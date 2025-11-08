@@ -4,7 +4,7 @@ import { Footer } from '../components/layout/Footer'
 
 export default function About() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#f0f2f5]">
       <Navbar />
       <main className="max-w-7xl mx-auto px-6 py-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">

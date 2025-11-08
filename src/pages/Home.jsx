@@ -13,14 +13,12 @@ export default function Home () {
     <div className="min-h-screen bg-[url('/images/bg.jpg')] bg-cover bg-fixed bg-center bg-no-repeat ">
       
       
-      <section className="relative h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 flex items-center justify-center">
-        <div className="absolute inset-0 bg-black opacity-20"></div>
+      <section className="relative min-h-[60vh] md:h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 flex items-center justify-center">
+        <div className="absolute inset-0 bg-black opacity-20" />
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat brightness-95"
-          style={{
-            backgroundImage: `url("/images/hero_bg.jpg")`,
-          }}
-        ></div>
+          style={{ backgroundImage: `url("/images/hero_bg.jpg")` }}
+        />
         <div className=" z-10 px-8 py-3 relative top-52 text-center text-[#212529] bg-[#be9b6c] hover:bg-yellow-700 rounded-full text-lg font-medium transition transform hover:scale-105">
           
 
@@ -32,8 +30,8 @@ export default function Home () {
       {/* Unleash Your Potential Section */}
       <section className="py-24 ">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          <div className="w-[400px] flex flex-col gap-6">
-            <h2 className="text-6xl font-semibold text-[#f6f6f6] mb-6">
+          <div className="max-w-md w-full flex flex-col gap-6">
+            <h2 className="text-3xl md:text-6xl font-semibold text-[#f6f6f6] mb-6">
               Unleash your
               <br />
               potential.
@@ -48,20 +46,20 @@ export default function Home () {
             </button>
           </div>
           <div className="w-full mt-4 ">
-            <div className="relative rounded-2xl">
-              <div className=" max-w-lg px-12 h-[30rem]">
+              <div className="relative rounded-2xl">
+                <div className="max-w-lg px-6 md:px-12 h-72 md:h-[30rem]">
+                  <img
+                    src="https://wallpapers.com/images/hd/trendy-men-s-clothing-store-fnk73p47fq9fj501.jpg"
+                    alt=""
+                    className="w-full h-full object-cover rounded-md"
+                  />
+                </div>
                 <img
-                  src="https://wallpapers.com/images/hd/trendy-men-s-clothing-store-fnk73p47fq9fj501.jpg"
+                  src="https://www.permanentstyle.com/wp-content/uploads/2020/08/T-shirts-at-Clutch-Cafe-london-500x625.jpg"
                   alt=""
-                  className="w-full h-full object-cover rounded-md "
+                  className="h-44 w-36 md:h-60 md:w-48 absolute right-4 md:right-8 top-6 md:top-12 object-cover rounded-md"
                 />
-              </div>
-              <img
-                src="https://www.permanentstyle.com/wp-content/uploads/2020/08/T-shirts-at-Clutch-Cafe-london-500x625.jpg"
-                alt=""
-                className="h-60 w-48 absolute right-8 top-12 object-cover rounded-md"
-              />
-              <div className="absolute -left-32 bottom-16 max-w-lg flex flex-col gap-3 bg-white p-6 rounded-md border-l-4 border-[#be9b6c] shadow-lg">
+                <div className="md:absolute relative md:-left-32 md:bottom-16 max-w-lg flex flex-col gap-3 bg-white p-6 rounded-md border-l-4 border-[#be9b6c] shadow-lg">
                 <p className="text-gray-700">
                   "This is a game changer in our industry. The innovation and
                   creativity behind this platform is truly remarkable."

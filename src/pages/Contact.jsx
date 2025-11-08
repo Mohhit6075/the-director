@@ -4,7 +4,7 @@ import { Footer } from '../components/layout/Footer'
 
 export default function Contact() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#f0f2f5]">
       <Navbar />
       <main className="max-w-4xl mx-auto px-6 py-20">
         <h1 className="text-3xl font-bold mb-6">Contact Production Office</h1>
