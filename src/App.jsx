@@ -1,4 +1,3 @@
-
 import { Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import Login from './pages/Login'
@@ -12,6 +11,8 @@ import Addresses from './pages/Addresses'
 import Orders from './pages/Orders'
 import Cart from './pages/Cart'
 import { useAuth } from './context/AuthContext'
+import CategoryPage from './pages/CategoryPage'
+import ProductPage from './pages/ProductPage'
 
 const App = () => {
   return (
@@ -28,6 +29,8 @@ const App = () => {
   <Route path="/cart" element={<ProfileWrapper><Cart /></ProfileWrapper>} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/category/:categoryId" element={<CategoryPage />} />
+        <Route path="/product/:productId" element={<ProductPage />} />
       </Routes>
     </div>
   )

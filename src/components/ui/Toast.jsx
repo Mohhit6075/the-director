@@ -34,34 +34,53 @@ function ToastCard({ visible, message, opts = {}, onClose }) {
   const type = opts.type || 'default'
   const title = opts.title
 
-  const accent = {
-    success: 'bg-emerald-500',
-    error: 'bg-rose-500',
-    info: 'bg-sky-500',
-    default: 'bg-gray-400',
-  }[type]
-
-  const icon = {
-    success: <IoCheckmarkCircleOutline className="text-white" size={16} />,
-    error: <IoCloseCircleOutline className="text-white" size={16} />,
-    info: <IoInformationCircleOutline className="text-white" size={16} />,
-    default: <IoInformationCircleOutline className="text-white" size={16} />,
-  }[type]
+  // Define distinct styles for each toast type
+  const typeStyles = {
+    success: {
+      accent: 'bg-green-500',
+      iconBg: 'bg-green-100/70',
+      icon: <IoCheckmarkCircleOutline className="text-green-700" size={20} />,
+      ring: 'ring-green-500/50',
+    },
+    error: {
+      accent: 'bg-red-500',
+      iconBg: 'bg-red-100/70',
+      icon: <IoCloseCircleOutline className="text-red-700" size={20} />,
+      ring: 'ring-red-500/50',
+    },
+    info: {
+      accent: 'bg-sky-500',
+      iconBg: 'bg-sky-100/70',
+      icon: <IoInformationCircleOutline className="text-sky-700" size={20} />,
+      ring: 'ring-sky-500/50',
+    },
+    default: {
+      accent: 'bg-gray-400',
+      iconBg: 'bg-gray-100/70',
+      icon: <IoInformationCircleOutline className="text-gray-700" size={20} />,
+      ring: 'ring-gray-400/50',
+    },
+  }
+  
+  const { icon, iconBg, ring } = typeStyles[type]
 
   return (
-    <div className={`transform transition-all duration-150 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2'}`}>
-      <div className="flex items-center w-full max-w-sm bg-white border border-gray-100 rounded-lg shadow-md overflow-hidden">
-        <div className={`w-1.5 h-full ${accent}`} />
-        <div className="flex items-center gap-3 px-3 py-2 flex-1">
-          <div className="flex-none w-7 h-7 flex items-center justify-center rounded-md bg-gray-100">
+    // Added smoother/more noticeable entrance/exit animation
+    <div className={`transform transition-all duration-300 ${visible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 -translate-y-2 scale-95'}`}>
+      <div className={`flex items-center w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden ring-2 ${ring} ring-opacity-70`}>
+        {/* Removed the left accent bar to use the ring as the primary indicator */}
+        
+        <div className="flex items-center gap-3 px-4 py-3 flex-1">
+          {/* Icon container now uses a light background color based on type */}
+          <div className={`flex-none w-8 h-8 flex items-center justify-center rounded-full ${iconBg}`}>
             {icon}
           </div>
           <div className="flex-1 min-w-0">
             {title && <div className="text-xs font-semibold text-gray-500 truncate">{title}</div>}
-            <div className="text-sm text-slate-700 truncate">{typeof message === 'string' ? message : message}</div>
+            <div className="text-sm text-slate-700 font-medium">{typeof message === 'string' ? message : message}</div>
           </div>
-          <button onClick={onClose} className="ml-3 text-gray-400 hover:text-gray-600">
-            <IoClose size={16} />
+          <button onClick={onClose} className="ml-3 text-gray-400 hover:text-gray-600 p-1 rounded-full hover:bg-gray-100">
+            <IoClose size={18} />
           </button>
         </div>
       </div>

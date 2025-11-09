@@ -28,12 +28,12 @@ export default function Profile() {
     try {
       const payload = { [field]: profile[field] }
       const updated = await updateProfile(payload)
-      toast.show('Saved')
+      toast.show('Saved', { type: 'success' })
       setEditing(e => ({ ...e, [field]: false }))
       // update local user object if available
       if (updated) setProfile({ name: updated.name, phone: updated.phone })
     } catch (err) {
-      toast.show(err.message || 'Save failed', { duration: 3000 })
+      toast.show(err.message || 'Save failed',{type: 'error'}, { duration: 3000 })
     }
   }
 
@@ -60,7 +60,7 @@ export default function Profile() {
               <Link to="/orders" className="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-gray-50 transition-colors"><IoReceiptOutline /> Orders <span className="ml-auto text-sm bg-yellow-100 text-yellow-800 px-2 py-0.5 rounded-full">{orders.length}</span></Link>
               <Link to="/addresses" className="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-gray-50 transition-colors"><IoLocation /> Addresses</Link>
               <Link to="/profile" className="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-gray-50 transition-colors"><IoLockClosed /> Security</Link>
-              <button onClick={() => { const a = confirm('Log out?'); if (a) { logout(); navigate('/') } }} className="w-full flex items-center gap-3 px-3 py-2 rounded-md hover:bg-gray-50 transition-colors text-red-600"><IoLogOut /> Logout</button>
+              <button onClick={() =>  logout()}  className="w-full flex items-center gap-3 px-3 py-2 rounded-md hover:bg-gray-50 transition-colors text-red-600"><IoLogOut /> Logout</button>
             </nav>
           </aside>
 

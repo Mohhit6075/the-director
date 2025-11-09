@@ -1,10 +1,13 @@
 /* eslint-disable react-refresh/only-export-components */
 import React, { createContext, useContext, useEffect, useState } from 'react'
+import { useNavigate} from 'react-router-dom'
 import * as auth from '../services/mockAuth'
 
 const AuthContext = createContext(null)
 
+
 export function AuthProvider({ children }) {
+  const navigate = useNavigate();
   const [user, setUser] = useState(null)
   const [token, setToken] = useState(null)
 
@@ -45,6 +48,7 @@ export function AuthProvider({ children }) {
     setToken(null)
     localStorage.removeItem('td_session')
     sessionStorage.removeItem('td_session')
+    navigate('/') // Assuming you have a navigate function available
   }
 
   const requestPasswordReset = async (email) => {
