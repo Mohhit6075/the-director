@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Navbar } from "../components/layout/Navbar";
-import AuthForm from "../features/auth/AuthForm";
+import AuthForm from "../features/auth/components/AuthForm";
 import { useAuth } from "../context/AuthContext";
 import { useState } from "react";
 import { useToast } from "../components/ui/Toast";
