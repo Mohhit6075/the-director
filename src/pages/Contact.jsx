@@ -3,17 +3,16 @@ import { GoMail } from "react-icons/go";
 
 export default function Contact() {
   return (
-    <div className=" max-w-7xl min-h-screen mx-auto flex items-center justify-center">
+    <div className=" max-w-7xl w-[90%] mt-20 py-20 mx-auto flex items-center justify-center">
       <div className="w-full flex flex-col lg:flex-row gap-8">
-        <div className="w-full lg:w-[340px] bg-white text-black p-8 rounded shadow-lg h-fit">
+        {/** Contact Info Panel */}
+        <div className="w-full lg:w-[340px] bg-white text-black p-8 rounded shadow-lg">
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-4">
               <div className="w-10 h-10 bg-[#fd4444] rounded-full flex items-center justify-center text-white shrink-0">
                 <BsTelephone size={18} />
               </div>
-              <h3 className="font-semibold text-base tracking-wide">
-                Call To Us
-              </h3>
+              <h3 className="font-bold text-base tracking-wide">Call To Us</h3>
             </div>
             <p className="text-sm tracking-wide">
               We are available 24/7, 7 days a week.
@@ -29,9 +28,7 @@ export default function Contact() {
               <div className="w-10 h-10 bg-[#fd4444] rounded-full flex items-center justify-center text-white shrink-0">
                 <GoMail size={18} />
               </div>
-              <h3 className="font-semibold text-base tracking-wide">
-                Write To Us
-              </h3>
+              <h3 className="font-bold text-base tracking-wide">Write To Us</h3>
             </div>
             <p className="text-sm tracking-wide">
               Fill out our form and we will contact you within 24 hours.
@@ -44,25 +41,25 @@ export default function Contact() {
         </div>
 
         {/* Contact Form Panel */}
-        <div className="flex-1 bg-white p-8 rounded shadow-lg text-black">
-          <form className="flex flex-col gap-8">
+        <div className="flex-1 bg-white p-4 py-6 md:p-6 lg:p-8 rounded order-first lg:order-none shadow-lg text-black">
+          <form className="flex flex-col gap-4 md:gap-6 lg:gap-8">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <input
                 type="text"
                 placeholder="Your Name *"
-                className="w-full bg-[#F0F0F0] rounded px-4 py-3.5 outline-none focus:ring-1 focus:ring-gray-300 transition-all placeholder:text-gray-500 text-sm"
+                className="w-full bg-gray-200 rounded px-4 py-3.5 outline-none focus:ring-1 focus:ring-gray-300 transition-all placeholder:text-gray-500 text-sm"
                 required
               />
               <input
                 type="email"
                 placeholder="Your Email *"
-                className="w-full bg-[#F0F0F0] rounded px-4 py-3.5 outline-none focus:ring-1 focus:ring-gray-300 transition-all placeholder:text-gray-500 text-sm"
+                className="w-full bg-gray-200 rounded px-4 py-3.5 outline-none focus:ring-1 focus:ring-gray-300 transition-all placeholder:text-gray-500 text-sm"
                 required
               />
               <input
                 type="tel"
                 placeholder="Your Phone *"
-                className="w-full bg-[#F0F0F0] rounded px-4 py-3.5 outline-none focus:ring-1 focus:ring-gray-300 transition-all placeholder:text-gray-500 text-sm"
+                className="w-full bg-gray-200 rounded px-4 py-3.5 outline-none focus:ring-1 focus:ring-gray-300 transition-all placeholder:text-gray-500 text-sm"
                 required
               />
             </div>
@@ -70,7 +67,7 @@ export default function Contact() {
             <textarea
               placeholder="Your Message"
               rows="8"
-              className="w-full bg-[#F0F0F0] rounded px-4 py-3.5 outline-none focus:ring-1 focus:ring-gray-300 transition-all placeholder:text-gray-500 text-sm resize-none"
+              className="w-full bg-gray-200 rounded px-4 py-3.5 outline-none focus:ring-1 focus:ring-gray-300 transition-all placeholder:text-gray-500 text-sm resize-none"
             ></textarea>
 
             <div className="flex justify-end">

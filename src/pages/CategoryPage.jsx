@@ -92,9 +92,9 @@ const CategoryPage = () => {
 
   return (
     <div className="min-h-screen py-20 mt-12">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-4 md:px-6">
         {/* Breadcrumb */}
-        <div className="mb-8 text-sm flex gap-2 text-yellow-400/60">
+        <div className="mb-6 md:mb-8 text-sm flex gap-2 text-yellow-400/60">
           <Link
             to="/"
             className="text-[#ffad33]/70 hover:text-[#ffad33] transition-colors"
@@ -105,38 +105,38 @@ const CategoryPage = () => {
           <span className="text-[#ffad33]">{category.name}</span>
         </div>
 
-        <div className="flex justify-between items-center my-12">
-          <div className="flex flex-col items-center gap-4">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 md:gap-0 my-8 md:my-12">
+          <div className="flex flex-col items-start gap-2 md:gap-4">
             <div className="flex items-center justify-start gap-2">
-              <div className="w-5 h-10 bg-[#fd4444] rounded"></div>
-              <p className="text-[#ffad33] text-3xl font-medium mb-1">
+              <div className="w-4 md:w-5 h-8 md:h-10 bg-[#fd4444] rounded"></div>
+              <p className="text-[#ffad33] text-2xl md:text-3xl font-medium mb-1">
                 {category.name}
               </p>
             </div>
           </div>
 
-          <div className="flex gap-2">
+          <div className="flex gap-2 self-end sm:self-auto">
             <button
               onClick={handlePrevPage}
               disabled={currentPage === 0}
-              className={`p-3 rounded-full ${
+              className={`p-2 md:p-3 rounded-full ${
                 currentPage === 0
                   ? "bg-white cursor-not-allowed"
                   : "bg-white hover:bg-gray-700"
               } transition-colors`}
             >
-              <IoChevronBack className="text-black text-xl" />
+              <IoChevronBack className="text-black text-lg md:text-xl" />
             </button>
             <button
               onClick={handleNextPage}
               disabled={currentPage >= totalPages - 1}
-              className={`p-3 rounded-full ${
+              className={`p-2 md:p-3 rounded-full ${
                 currentPage >= totalPages - 1
                   ? "bg-white cursor-not-allowed"
                   : "bg-white hover:bg-gray-700"
               } transition-colors`}
             >
-              <IoChevronForward className="text-black text-xl" />
+              <IoChevronForward className="text-black text-lg md:text-xl" />
             </button>
           </div>
         </div>

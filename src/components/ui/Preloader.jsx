@@ -280,7 +280,7 @@ export default function Preloader({ onDone }) {
   return (
     <div
       ref={containerRef}
-      className="fixed inset-0 z-[9999] overflow-hidden"
+      className="fixed inset-0 z-[9999] overflow-hidden font-"
       style={{
         background:
           "linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2a2a2a 100%)",
@@ -417,7 +417,7 @@ export default function Preloader({ onDone }) {
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
-                fontFamily: "system-ui, -apple-system, sans-serif",
+                fontFamily: "Mulish, sans-serif",
                 filter: "drop-shadow(0 0 20px rgba(255, 173, 51, 0.5))",
               }}
             >

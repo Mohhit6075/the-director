@@ -36,7 +36,7 @@ export default function Login() {
                 password: payload.password,
                 remember: payload.remember,
               });
-              toast.show("Signed in", { type: "success" });
+              toast.show("Logged in", { type: "success" });
               navigate(redirectUrl || "/home");
             } catch (err) {
               toast.show(err.message || "Sign in failed", { type: "error" });

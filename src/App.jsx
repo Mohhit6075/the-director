@@ -24,7 +24,10 @@ import Reviews from "./pages/Reviews";
 
 const App = () => {
   return (
-    <div className="min-h-screen overflow-x-hidden bg-[url('/images/ui/bg.jpg')] bg-fixed bg-cover bg-center bg-no-repeat flex flex-col gap-20 relative before:absolute before:inset-0 before:bg-black/50 before:pointer-events-none">
+    <div className="h-screen overflow-x-hidden flex flex-col gap-20 relative">
+      <div className="fixed inset-0 bg-[url('/images/ui/bg.jpg')] bg-cover bg-center bg-no-repeat -z-10 pointer-events-none">
+        <div className="absolute inset-0 bg-black/50"></div>
+      </div>
       <Navbar />
       <div className="relative z-10">
         <Routes>

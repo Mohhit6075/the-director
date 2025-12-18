@@ -3,15 +3,15 @@ import { FaInstagram, FaFacebookF } from "react-icons/fa";
 import { Link } from "react-router-dom";
 export const Footer = () => {
   return (
-    <div className="z-50">
+    <div className="z-10">
       <footer className="bg-[#18130e] py-12">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6 items-start">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6 items-center">
             <div className="w-full flex items-center gap-4">
               <img
-                src="/images/logo.jpg"
+                src="/images/brand/logo.png"
                 alt="Logo"
-                className="w-12 h-12 brightness-150 rounded-full flex-shrink-0"
+                className="w-32 h-20 brightness-150 rounded-full flex-shrink-0"
               />
               <div className="w-full flex flex-wrap gap-3 text-nowrap md:flex-nowrap">
                 {[

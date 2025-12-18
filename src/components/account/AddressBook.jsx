@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { useToast } from "../../components/ui/Toast";
+import { FaArrowLeftLong } from "react-icons/fa6";
 
 export default function AddressBook() {
   const { user } = useAuth();
@@ -105,7 +106,6 @@ export default function AddressBook() {
     }
 
     if (editingAddress) {
-
       setAddresses(
         addresses.map((a) =>
           a.id === editingAddress.id ? { ...formData, id: a.id } : a
@@ -113,7 +113,6 @@ export default function AddressBook() {
       );
       toast.show("Address updated successfully", { type: "success" });
     } else {
-
       const newAddress = {
         ...formData,
         id: Date.now(),
@@ -147,10 +146,12 @@ export default function AddressBook() {
       {!showModal ? (
         <>
           <div className="flex justify-between items-center mb-8">
-            <h2 className="text-3xl font-bold text-[#fd4444]">Address Book</h2>
+            <h2 className="text-3xl font-extrabold text-[#fd4444]">
+              Address Book
+            </h2>
             <button
               onClick={handleAddNew}
-              className="px-6 py-3 bg-[#fd4444] text-white rounded hover:bg-[#c93e3e] transition-all font-medium"
+              className="px-6 py-3 bg-[#fd4444] text-white rounded hover:bg-red-500 transition-colors duration-200 font-medium"
             >
               + Add New Address
             </button>
@@ -161,7 +162,7 @@ export default function AddressBook() {
               <p className="text-gray-600 mb-4">No addresses saved yet</p>
               <button
                 onClick={handleAddNew}
-                className="px-6 py-3 bg-[#fd4444] text-white rounded hover:bg-[#c93e3e] transition-all font-medium"
+                className="px-6 py-3 bg-[#fd4444] text-white rounded hover:bg-red-500 transition-all font-medium"
               >
                 Add Your First Address
               </button>
@@ -193,7 +194,7 @@ export default function AddressBook() {
                       </button>
                       <button
                         onClick={() => handleDelete(address.id)}
-                        className="text-red-600 hover:text-red-800 text-sm font-medium"
+                        className="text-red-500 hover:text-red-700 text-sm font-medium"
                       >
                         Delete
                       </button>
@@ -235,14 +236,14 @@ export default function AddressBook() {
       ) : (
         <>
           <div className="flex justify-between items-center mb-8">
-            <h2 className="text-3xl font-bold text-[#fd4444]">
+            <h2 className="text-3xl font-extrabold text-[#fd4444]">
               {editingAddress ? "Edit Address" : "Add New Address"}
             </h2>
             <button
               onClick={() => setShowModal(false)}
-              className="px-6 py-3 text-gray-700 hover:text-gray-900 transition-colors font-medium"
+              className="px-2 py-3 flex items-center text-gray-700 hover:text-gray-900 transition-colors font-medium"
             >
-              ← Back to Addresses
+              <FaArrowLeftLong className="w-4 h-4 mr-2" /> Back
             </button>
           </div>
 
@@ -384,7 +385,7 @@ export default function AddressBook() {
               </button>
               <button
                 type="submit"
-                className="px-8 py-3 bg-[#fd4444] text-white rounded hover:bg-red-600 transition-colors font-medium"
+                className="px-8 py-3 bg-[#fd4444] text-white rounded hover:bg-red-500 transition-colors font-medium"
               >
                 {editingAddress ? "Update Address" : "Add Address"}
               </button>

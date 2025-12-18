@@ -66,13 +66,13 @@ export default function Cancellations() {
   const getStatusColor = (status) => {
     switch (status) {
       case "approved":
-        return "bg-green-500/30 text-green-600";
+        return "bg-green-300/20 text-green-400";
       case "pending":
-        return "bg-yellow-500/30 text-yellow-600";
+        return "bg-yellow-300/20 text-yellow-400";
       case "rejected":
-        return "bg-red-500/30 text-red-600";
+        return "bg-red-300/20 text-red-500";
       default:
-        return "bg-gray-500/30 text-gray-600";
+        return "bg-gray-300/30 text-gray-400";
     }
   };
 
@@ -93,22 +93,22 @@ export default function Cancellations() {
 
   return (
     <div className="min-h-screen py-20 mt-12">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold text-[#ffad33] mb-2">
+      <div className="max-w-7xl mx-auto px-4 md:px-6">
+        <div className="mb-6 md:mb-8">
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#ffad33] mb-2">
             My Cancellations
           </h1>
-          <p className="text-gray-300">
+          <p className="text-sm md:text-base text-gray-300">
             Track your order cancellation requests and refunds
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
           <div className="lg:col-span-3 space-y-6">
-            <div className="flex gap-4 border-b border-gray-300 pb-4">
+            <div className="flex gap-2 md:gap-4 border-b border-gray-300 pb-4 overflow-x-auto scrollbar-hide">
               <button
                 onClick={() => setFilter("all")}
-                className={`px-4 py-2 font-medium transition-colors ${
+                className={`px-3 md:px-4 py-2 font-medium transition-colors whitespace-nowrap text-sm md:text-base ${
                   filter === "all"
                     ? "text-[#ffad33] border-b-2 border-[#ffad33]"
                     : "text-gray-300 hover:text-[#ffad33]"
@@ -118,7 +118,7 @@ export default function Cancellations() {
               </button>
               <button
                 onClick={() => setFilter("approved")}
-                className={`px-4 py-2 font-medium transition-colors ${
+                className={`px-3 md:px-4 py-2 font-medium transition-colors whitespace-nowrap text-sm md:text-base ${
                   filter === "approved"
                     ? "text-[#ffad33] border-b-2 border-[#ffad33]"
                     : "text-gray-300 hover:text-[#ffad33]"
@@ -128,7 +128,7 @@ export default function Cancellations() {
               </button>
               <button
                 onClick={() => setFilter("pending")}
-                className={`px-4 py-2 font-medium transition-colors ${
+                className={`px-3 md:px-4 py-2 font-medium transition-colors whitespace-nowrap text-sm md:text-base ${
                   filter === "pending"
                     ? "text-[#ffad33] border-b-2 border-[#ffad33]"
                     : "text-gray-300 hover:text-[#ffad33]"
@@ -138,7 +138,7 @@ export default function Cancellations() {
               </button>
               <button
                 onClick={() => setFilter("rejected")}
-                className={`px-4 py-2 font-medium transition-colors ${
+                className={`px-3 md:px-4 py-2 font-medium transition-colors whitespace-nowrap text-sm md:text-base ${
                   filter === "rejected"
                     ? "text-[#ffad33] border-b-2 border-[#ffad33]"
                     : "text-gray-300 hover:text-[#ffad33]"
@@ -150,7 +150,7 @@ export default function Cancellations() {
 
             {/* Cancellations List */}
             {filteredCancellations.length === 0 ? (
-              <div className="bg-white/95 rounded-lg border border-[#ffad33] p-12 text-center">
+              <div className="bg-black/5 backdrop-blur-sm rounded-lg border border-[#ffad33] p-12 text-center">
                 <BiPackage className="w-16 h-16 text-gray-500 mx-auto mb-4" />
                 <p className="text-gray-400 text-lg mb-2">
                   No cancellations found
@@ -166,14 +166,14 @@ export default function Cancellations() {
                 {filteredCancellations.map((cancellation) => (
                   <div
                     key={cancellation.id}
-                    className="bg-white/95 rounded-lg border-2 border-[#ffad33] p-6 hover:border-[#ffad33]/50 transition-all"
+                    className="bg-black/5 backdrop-blur-sm rounded-lg border border-[#ffad33] p-6 hover:border-[#ffad33]/50 transition-all"
                   >
-                    <div className="flex items-center justify-between mb-4 pb-4 border-b border-gray-700">
+                    <div className="flex items-center justify-between mb-4 pb-4 border-b border-gray-400">
                       <div className="flex items-center gap-3">
-                        <span className="text-gray-700 text-sm">Order ID:</span>
+                        <span className="text-gray-300 text-sm">Order ID:</span>
                         <Link
                           to={`/account/orders`}
-                          className="text-yellow-600 font-medium hover:text-yellow-400 transition-colors"
+                          className="text-[#ffad33] font-medium hover:text-yellow-400 transition-colors"
                         >
                           {cancellation.orderId}
                         </Link>
@@ -206,16 +206,16 @@ export default function Cancellations() {
                         <h3 className="text-[#ffad33] font-medium mb-1">
                           {cancellation.productName}
                         </h3>
-                        <div className="text-sm text-gray-700 space-y-1">
+                        <div className="text-sm text-gray-300 space-y-1">
                           <p>
                             Quantity:{" "}
-                            <span className="text-black font-medium">
+                            <span className="text-white font-medium">
                               {cancellation.quantity}
                             </span>
                           </p>
                           <p className="">
                             Price:{" "}
-                            <span className="text-black font-medium">
+                            <span className="text-white font-medium">
                               ${cancellation.price}
                             </span>
                           </p>
@@ -224,7 +224,7 @@ export default function Cancellations() {
                     </div>
 
                     {/* Cancellation Details */}
-                    <div className="bg-black/90 rounded-lg p-4 space-y-3">
+                    <div className=" p-4 space-y-3">
                       <div>
                         <span className="text-sm text-gray-400">
                           Reason for Cancellation:
@@ -305,27 +305,27 @@ export default function Cancellations() {
           </div>
 
           {/* Sidebar Stats */}
-          <aside className="lg:col-span-1">
-            <div className="bg-white/95  rounded-lg border-2 border-[#ffad33] p-6 sticky top-24">
+          <aside className="lg:col-span-1 order-first lg:order-last">
+            <div className="bg-black/5 backdrop-blur-sm rounded-lg border border-[#ffad33] p-4 md:p-6 lg:sticky lg:top-24 mb-6 lg:mb-0">
               <h3 className="text-lg font-semibold text-[#ffad33] mb-4">
                 Cancellation Summary
               </h3>
 
               <div className="space-y-4">
                 <div>
-                  <div className="text-sm text-gray-700 mb-1">
+                  <div className="text-sm text-gray-300 mb-1">
                     Total Requests
                   </div>
-                  <div className="text-3xl font-bold text-gray-800">
+                  <div className="text-3xl font-bold text-gray-200">
                     {stats.total}
                   </div>
                 </div>
 
-                <div className="border-t border-gray-700 pt-4 space-y-3">
+                <div className="border-t border-gray-400 pt-4 space-y-3">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <MdCheckCircle className="text-green-500" />
-                      <span className="text-sm text-gray-700">Approved</span>
+                      <span className="text-sm text-gray-300">Approved</span>
                     </div>
                     <span className="text-green-500 font-medium">
                       {stats.approved}
@@ -334,7 +334,7 @@ export default function Cancellations() {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <MdPending className="text-yellow-500" />
-                      <span className="text-sm text-gray-700">Pending</span>
+                      <span className="text-sm text-gray-300">Pending</span>
                     </div>
                     <span className="text-yellow-500 font-medium">
                       {stats.pending}
@@ -343,7 +343,7 @@ export default function Cancellations() {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <MdOutlineCancel className="text-red-500" />
-                      <span className="text-sm text-gray-700">Rejected</span>
+                      <span className="text-sm text-gray-300">Rejected</span>
                     </div>
                     <span className="text-red-500 font-medium">
                       {stats.rejected}
@@ -351,8 +351,8 @@ export default function Cancellations() {
                   </div>
                 </div>
 
-                <div className="border-t border-gray-700 pt-4">
-                  <div className="text-sm text-gray-700 mb-1">
+                <div className="border-t border-gray-400 pt-4">
+                  <div className="text-sm text-gray-300 mb-1">
                     Total Refunded
                   </div>
                   <div className="text-2xl font-bold text-green-500">
@@ -361,8 +361,8 @@ export default function Cancellations() {
                 </div>
               </div>
 
-              <div className="mt-6 pt-6 border-t border-gray-700">
-                <p className="text-xs text-gray-700">
+              <div className="mt-6 pt-6 border-t border-gray-400">
+                <p className="text-xs text-gray-300">
                   Refunds are typically processed within 5-7 business days after
                   approval.
                 </p>

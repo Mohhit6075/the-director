@@ -4,18 +4,20 @@ import { GoShieldCheck } from "react-icons/go";
 
 export default function About() {
   return (
-    <div className="max-w-7xl min-h-screen mx-auto mt-20 pt-20">
+    <div className="max-w-7xl w-[80%] min-h-screen mx-auto mt-20 pt-20">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-32">
-        <div className="text-white">
-          <h1 className="text-5xl font-bold mb-6 tracking-wide">Our Story</h1>
-          <p className="text-white/80 mb-6 leading-relaxed text-lg">
+        <div className="text-white order-last">
+          <h1 className="text-3xl md:text-3xl lg:text-5xl  text-[#ffad33] font-extrabold mb-2 lg:mb-6 tracking-wider">
+            Our Story
+          </h1>
+          <p className="text-white/80 mb-2 lg:mb-6 leading-relaxed text-base lg:text-lg tracking-wide">
             Launched in 2025, Exclusive is South Asia's premier online shopping
             marketplace with an active presence in Bangladesh. Supported by wide
             range of tailored marketing, data and service solutions, Exclusive
             has 10,500 sellers and 300 brands and serves 3 millions customers
             across the region.
           </p>
-          <p className="text-white/80 leading-relaxed text-lg">
+          <p className="text-white/80 leading-relaxed text-base lg:text-lg tracking-wide">
             Exclusive has more than 1 Million products to offer, growing at a
             very fast pace. Exclusive offers a diverse assortment in categories
             ranging from consumer.
@@ -74,7 +76,7 @@ export default function About() {
       </div>
 
       {/* Services Section */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-12 p-16">
+      <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12 lg:p-16">
         <div className="text-center">
           <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
             <div className="w-14 h-14 bg-black rounded-full flex items-center justify-center">

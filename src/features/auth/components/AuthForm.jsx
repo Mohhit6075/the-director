@@ -69,20 +69,23 @@ export default function AuthForm({ mode, onSubmit }) {
             className="absolute right-0 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 transition-colors"
           >
             {showPassword ? (
-              <IoEyeOffOutline size={20} />
+              <IoEyeOffOutline
+                style={{ width: "1.25rem", height: "1.25rem" }}
+              />
             ) : (
-              <IoEyeOutline size={20} />
+              <IoEyeOutline style={{ width: "1.25rem", height: "1.25rem" }} />
             )}
           </button>
         </div>
       )}
 
-      <div className="flex justify-between mt-8">
+      <div className="flex justify-between gap-2 mt-8">
         <button
           type="submit"
-          className={`bg-[#fd4444] hover:bg-[#fd4444]/90 active:scale-[0.98] transition-all py-3.5 rounded-md text-white font-medium text-base shadow-lg shadow-red-200 ${
-            isLogin ? "w-36" : "w-full"
+          className={`bg-[#fd4444] hover:bg-red-500 active:scale-[0.98] transition-all py-3.5 rounded-md text-white font-medium text-base shadow-lg shadow-red-200 ${
+            isLogin ? "" : "w-full"
           }`}
+          style={isLogin ? { width: "9rem" } : {}}
         >
           {isLogin ? "Log In" : isSignup ? "Create Account" : "Send Reset Link"}
         </button>
@@ -91,7 +94,7 @@ export default function AuthForm({ mode, onSubmit }) {
           <div className="flex items-center justify-between mt-2">
             <Link
               to="/reset-password"
-              className="text-sm text-[#ffad33] text-nowrap hover:text-yellow-600 hover:underline transition-colors ml-auto"
+              className="text-sm text-[#ffad33]  hover:text-yellow-600 hover:underline transition-colors ml-auto"
             >
               Forgot Password?
             </Link>

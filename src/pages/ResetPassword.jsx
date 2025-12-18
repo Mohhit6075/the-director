@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Navbar } from "../components/layout/Navbar";
 import AuthForm from "../features/auth/components/AuthForm";
 import { useAuth } from "../context/AuthContext";
@@ -10,12 +10,13 @@ export default function ResetPassword() {
   const [message, setMessage] = useState(null);
   const [error, setError] = useState(null);
   const toast = useToast();
+  const navigate = useNavigate();
   return (
-    <div className="min-h-screen bg-[#f0f2f5]">
+    <div className="min-h-screen ">
       <Navbar />
       <div className="min-h-[calc(100vh-80px)] flex items-center justify-center p-6">
         <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">
+          <h2 className="text-2xl font-extrabold text-[#ffad33] mb-4">
             Reset your password
           </h2>
           <p className="text-sm text-gray-600 mb-6">
@@ -36,6 +37,7 @@ export default function ResetPassword() {
                 const msg = `Reset token created: ${token} (use ResetConfirm to set new password)`;
                 setMessage(msg);
                 toast.show(msg, { type: "info", duration: 8000 });
+                navigate("/reset-confirm");
               } catch (err) {
                 toast.show(err.message || "Reset failed", { type: "error" });
                 setError(err.message);

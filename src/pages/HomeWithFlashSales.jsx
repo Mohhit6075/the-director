@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import { FaArrowRightLong, FaArrowUpLong } from "react-icons/fa6";
+import { FaArrowUpLong } from "react-icons/fa6";
 import { TbTruckDelivery } from "react-icons/tb";
 import { RiCustomerService2Line } from "react-icons/ri";
 import {
@@ -81,7 +81,7 @@ export default function HomeWithFlashSales() {
     {
       id: 2,
       title: "New Collection",
-      discount: "Up to 20% off",
+      discount: "Up to 20% off Voucher",
       image: "/images/products/p2.jpg",
       link: "/category/2",
     },
@@ -161,7 +161,9 @@ export default function HomeWithFlashSales() {
           <span
             key={i}
             className={
-              i < rating ? "text-yellow-400 text-sm" : "text-gray-300 text-sm"
+              i < rating
+                ? "text-yellow-400 text-xs md:text-sm"
+                : "text-gray-300 text-xs md:text-sm"
             }
           >
             <BiSolidStar />
@@ -185,162 +187,164 @@ export default function HomeWithFlashSales() {
   return (
     <>
       <div className="min-h-screen flex flex-col gap-20 py-20 mt-12">
-        <section className="max-w-7xl mx-auto px-6">
-          <div className="w-full flex gap-8">
-            {/* Sidebar Categories */}
-            <div className="w-64">
-              <div className="flex flex-col gap-4">
-                {categories.map((category) => (
-                  <div
-                    key={category.id}
-                    className={`flex items-center justify-between text-[#ffad33] tracking-wide gap-2 group cursor-pointer transition-colors hover:text-yellow-400`}
-                  >
-                    <span>{category.name}</span>
-                    {category.hasSubmenu && (
-                      <span className="group-hover:pr-0 pr-1 transition-all">
-                        <IoChevronForward />
-                      </span>
-                    )}
-                  </div>
-                ))}
+        <section className="max-w-7xl w-full grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-6 md:gap-5 lg:gap-16 px-4 md:px-5 lg:px-6 mx-auto">
+          {/* Sidebar Categories */}
+
+          <div className=" grid grid-cols-1 gap-4 order-last md:order-first">
+            {categories.map((category) => (
+              <div
+                key={category.id}
+                className={`flex items-center justify-between text-[#ffad33] tracking-wider text-nowrap gap-2 group cursor-pointer transition-colors hover:text-yellow-400`}
+              >
+                <span>{category.name}</span>
+                {category.hasSubmenu && <IoChevronForward />}
               </div>
-            </div>
+            ))}
+          </div>
 
-            {/* Hero Banner */}
-            <div className="  w-5xl h-[350px] flex relative bg-black rounded-lg ">
-              <div className="relative min-h-[350px] w-full">
-                {banners.map((banner, index) => (
-                  <div
-                    key={banner.id}
-                    className={`absolute overflow-hidden rounded-md inset-0 transition-opacity duration-500 ${
-                      index === currentSlide ? "opacity-100" : "opacity-0"
-                    }`}
-                  >
-                    <div className="w-full flex justify-between gap-4 items-center h-full pl-12">
-                      <div className="flex flex-col z-10">
-                        <p className="text-[#ffad33] text-sm mb-4">
-                          {banner.title}
-                        </p>
-                        <h2 className="text-5xl font-bold text-[#ffad33] mb-6 leading-tight">
-                          {banner.discount}
-                        </h2>
-                        <Link
-                          to={banner.link}
-                          className="inline-flex items-center gap-2 text-white hover:text-[#ffad33] transition-colors"
-                        >
-                          <span className="border-b border-white hover:border-[#ffad33]">
-                            Shop Now
-                          </span>
-                          <FaArrowRightLong />
-                        </Link>
-                      </div>
-
-                      <img
-                        src={banner.image}
-                        alt={banner.title}
-                        className="w-[70%] h-full object-cover overflow-hidden"
-                        onError={(e) => {
-                          e.target.src =
-                            "https://via.placeholder.com/600x400?text=Banner";
-                        }}
-                      />
+          {/* Hero Banner */}
+          <div className="col-span-12 md:col-span-3 lg:col-span-4 relative  rounded-lg overflow-hidden">
+            <div className="relative w-full overflow-hidden">
+              {banners.map((banner, index) => (
+                <div
+                  key={banner.id}
+                  className={` rounded-md transition-all delay-700 overflow-hidden ${
+                    index === currentSlide ? "block" : "hidden"
+                  }`}
+                >
+                  <div className="w-full flex justify-between bg-[#19191a] gap-4 items-center h-full pl-4 md:pl-6 lg:pl-12">
+                    <div className="w-full flex flex-col z-10">
+                      <p className="text-[#fd4444] text-xs md:text-sm mb-4">
+                        {banner.title}
+                      </p>
+                      <h2 className="text-xl md:text-3xl lg:text-5xl font-bold text-[#ffad33] mb-3 md:mb-4 lg:mb-8 leading-tight">
+                        {banner.discount}
+                      </h2>
+                      <Link
+                        to={banner.link}
+                        className="w-32 text-nowrap flex items-center group gap-2 text-white hover:text-[#ffad33] transition-colors"
+                      >
+                        <span className="group-hover:underline text-sm md:text-base lg:text-lg">
+                          Shop Now
+                        </span>
+                        <span className="group-hover:pl-1 pl-0 transition-all">
+                          <IoChevronForward />
+                        </span>
+                      </Link>
                     </div>
-                  </div>
-                ))}
 
-                {/* Dots Navigation */}
-                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
-                  {banners.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setCurrentSlide(index)}
-                      className={`w-3 h-3 rounded-full transition-colors ${
-                        index === currentSlide ? "bg-[#fd4444]" : "bg-gray-400"
-                      }`}
+                    <img
+                      src={banner.image}
+                      alt={banner.title}
+                      className="w-full h-full object-cover aspect-square overflow-hidden "
+                      onError={(e) => {
+                        e.target.src =
+                          "https://via.placeholder.com/600x400?text=Banner";
+                      }}
                     />
-                  ))}
+                  </div>
                 </div>
+              ))}
+
+              {/* Dots Navigation */}
+              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
+                {banners.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentSlide(index)}
+                    className={`w-3 h-3 rounded-full transition-colors ${
+                      index === currentSlide ? "bg-[#fd4444]" : "bg-gray-400"
+                    }`}
+                  ></button>
+                ))}
               </div>
             </div>
           </div>
         </section>
 
         {/* Flash Sales Section */}
-        <section className="max-w-7xl mx-auto px-6">
+        <section className="max-w-7xl mx-auto px-4 md:px-6 mt-20">
           <div className="flex items-end justify-between mb-8">
-            <div className="flex items-end gap-20">
+            <div className="flex items-end gap-16 md:gap-12 lg:gap-20">
               <div>
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-5 h-10 bg-[#fd4444] rounded"></div>
-                  <p className="text-[#fd4444] text-xl font-medium">Today's</p>
+                <div className="flex items-center gap-2 lg:gap-4 mb-2 lg:mb-4">
+                  <div className="w-3 md:w-4 lg:w-5 h-10 bg-[#fd4444] rounded"></div>
+                  <p className="text-[#fd4444] text-lg lg:text-xl font-bold">
+                    Today's
+                  </p>
                 </div>
-                <h2 className="text-4xl font-bold text-[#ffad33]">
+                <h2 className="text-2xl lg:text-4xl font-extrabold text-[#ffad33]">
                   Flash Sales
                 </h2>
               </div>
-              <div className="flex gap-4 items-end">
+              <div className="flex gap-1 md:gap-2 lg:gap-4 items-end">
                 <div className="text-center">
                   <p className="text-xs text-gray-400 mb-1">Days</p>
-                  <p className="text-3xl font-bold text-[#ffad33]">
+                  <p className="lg:text-3xl md:text-2xl text-xl font-bold text-[#fff]">
                     {String(timeLeft.days).padStart(2, "0")}
                   </p>
                 </div>
-                <span className="text-3xl text-[#fd4444] font-bold">:</span>
+                <span className="lg:text-3xl md:text-2xl text-xl text-[#fd4444] font-bold">
+                  :
+                </span>
                 <div className="text-center">
                   <p className="text-xs text-gray-400 mb-1">Hours</p>
-                  <p className="text-3xl font-bold text-[#ffad33]">
+                  <p className="lg:text-3xl md:text-2xl text-xl font-bold text-[#fff]">
                     {String(timeLeft.hours).padStart(2, "0")}
                   </p>
                 </div>
-                <span className="text-3xl text-[#fd4444] font-bold">:</span>
+                <span className="lg:text-3xl md:text-2xl text-xl text-[#fd4444] font-bold">
+                  :
+                </span>
                 <div className="text-center">
                   <p className="text-xs text-gray-400 mb-1">Minutes</p>
-                  <p className="text-3xl font-bold text-[#ffad33]">
+                  <p className="lg:text-3xl md:text-2xl text-xl font-bold text-[#fff]">
                     {String(timeLeft.minutes).padStart(2, "0")}
                   </p>
                 </div>
-                <span className="text-3xl text-[#fd4444] font-bold">:</span>
+                <span className="lg:text-3xl md:text-2xl text-xl text-[#fd4444] font-bold">
+                  :
+                </span>
                 <div className="text-center">
                   <p className="text-xs text-gray-400 mb-1">Seconds</p>
-                  <p className="text-3xl font-bold text-[#ffad33]">
+                  <p className="lg:text-3xl md:text-2xl text-xl font-bold text-[#fff]">
                     {String(timeLeft.seconds).padStart(2, "0")}
                   </p>
                 </div>
               </div>
             </div>
 
-            <div className="flex items-center gap-6">
-              <div className="flex gap-2">
-                <button
-                  onClick={handlePrevFlashSale}
-                  disabled={flashSaleIndex === 0}
-                  className={`p-3 rounded-full ${
-                    flashSaleIndex === 0
-                      ? "bg-white cursor-not-allowed"
-                      : "bg-white hover:bg-gray-200"
-                  } transition-colors`}
-                >
-                  <IoChevronBack className="text-black text-xl" />
-                </button>
-                <button
-                  onClick={handleNextFlashSale}
-                  disabled={flashSaleIndex >= maxIndex}
-                  className={`p-3 rounded-full ${
-                    flashSaleIndex >= maxIndex
-                      ? "bg-gray-700 cursor-not-allowed"
-                      : "bg-white hover:bg-gray-200"
-                  } transition-colors`}
-                >
-                  <IoChevronForward className="text-black text-xl" />
-                </button>
-              </div>
+            {/* Navigation Arrows */}
+            <div className="hidden md:flex gap-2">
+              <button
+                onClick={handlePrevFlashSale}
+                disabled={flashSaleIndex === 0}
+                className={`p-3 rounded-full ${
+                  flashSaleIndex === 0
+                    ? "bg-white cursor-not-allowed"
+                    : "bg-white hover:bg-gray-200"
+                } transition-colors`}
+              >
+                <IoChevronBack className="text-black text-xl" />
+              </button>
+              <button
+                onClick={handleNextFlashSale}
+                disabled={flashSaleIndex >= maxIndex}
+                className={`p-3 rounded-full ${
+                  flashSaleIndex >= maxIndex
+                    ? "bg-gray-700 cursor-not-allowed"
+                    : "bg-white hover:bg-gray-200"
+                } transition-colors`}
+              >
+                <IoChevronForward className="text-black text-xl" />
+              </button>
             </div>
           </div>
 
           {/* Flash Sale Products */}
           <div className="overflow-hidden">
             <div
-              className="flex gap-6 transition-transform duration-300"
+              className="grid grid-cols-3 md:grid-cols-4 gap-2 md:gap-4 lg:gap-6 transition-transform duration-300"
               style={{
                 transform: `translateX(-${
                   flashSaleIndex * (100 / productsPerView + 1.5)
@@ -350,28 +354,28 @@ export default function HomeWithFlashSales() {
               {flashSaleProducts.map((product) => (
                 <div
                   key={product.id}
-                  className="group relative rounded-lg overflow-hidden flex-shrink-0 w-[calc(25%-18px)]"
+                  className="group relative rounded-lg overflow-hidden"
                 >
                   {/* Product Image */}
-                  <div className="relative aspect-square rounded-md overflow-hidden ">
-                    <span className="absolute top-3 left-3 bg-[#fd4444] text-white text-xs px-3 py-1 rounded z-10">
+                  <div className="relative rounded-md overflow-hidden ">
+                    <span className="absolute top-1 md:top-2 lg:top-3 left-1 md:left-2 lg:left-3 bg-[#fd4444] text-white text-xs px-1 md:px-2 lg:px-3 py-1 rounded z-10">
                       -{product.discount}%
                     </span>
 
-                    <div className="absolute top-3 right-3 flex flex-col gap-2 z-10">
+                    <div className="absolute top-1 md:top-2 lg:top-3 right-1 md:right-2 lg:right-3 flex flex-col gap-2 z-10">
                       <button
                         onClick={() => handleWishlist(product.id)}
                         className="bg-white p-2 rounded-full shadow hover:bg-gray-100 transition-colors"
                       >
                         {wishlist.includes(product.id) ? (
-                          <IoMdHeart className="text-[#fd4444] text-lg" />
+                          <IoMdHeart className="text-[#fd4444] text-base md:text-lg" />
                         ) : (
-                          <IoMdHeartEmpty className="text-gray-700 text-lg" />
+                          <IoMdHeartEmpty className="text-gray-700 text-base md:text-lg" />
                         )}
                       </button>
                       <Link to={`/product/${product.id}`}>
                         <button className="bg-white p-2 rounded-full shadow hover:bg-gray-100 transition-colors">
-                          <IoEyeOutline className="text-gray-700 text-lg" />
+                          <IoEyeOutline className="text-gray-700 text-base md:text-lg" />
                         </button>
                       </Link>
                     </div>
@@ -380,7 +384,7 @@ export default function HomeWithFlashSales() {
                       <img
                         src={product.image}
                         alt={product.name}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full aspect-square object-cover"
                         onError={(e) => {
                           e.target.src =
                             "https://via.placeholder.com/300x300?text=Product";
@@ -398,23 +402,23 @@ export default function HomeWithFlashSales() {
                   </div>
 
                   {/* Product Info */}
-                  <div className="py-4">
+                  <div className="py-2 md:py-3 lg:py-4">
                     <Link to={`/product/${product.id}`}>
-                      <h3 className="font-medium text-lg text-[#ffad33] mb-2 hover:text-[#ffad33]/80 transition-colors">
+                      <h3 className="font-bold text-sm md:text-base lg:text-lg text-[#ffad33] mb-2 hover:text-[#ffad33]/80 transition-colors">
                         {product.name}
                       </h3>
                     </Link>
                     <div className="flex items-center gap-3 mb-2">
-                      <span className="text-[#fd4444] font-bold">
+                      <span className="text-[#fd4444] text-sm md:text-base lg:text-lg font-bold">
                         ${product.price}
                       </span>
-                      <span className="text-gray-300 line-through text-sm">
+                      <span className="text-gray-300 line-through text-xs md:text-sm">
                         ${product.originalPrice}
                       </span>
                     </div>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-1 md:gap-2">
                       {renderStars(product.rating)}
-                      <span className="text-sm text-gray-300">
+                      <span className="text-xs md:text-sm text-gray-300">
                         ({product.reviews})
                       </span>
                     </div>
@@ -426,240 +430,29 @@ export default function HomeWithFlashSales() {
             <div className="text-center mt-12">
               <Link
                 to="/category/1"
-                className="inline-block px-12 py-4 bg-[#fd4444] text-white rounded hover:bg-red-600 transition-colors font-medium"
+                className="inline-block px-8 md:px-10 lg:px-12 py-3 md:py-3 lg:py-4 bg-[#fd4444] text-white rounded hover:bg-red-500 transition-colors font-medium"
               >
                 View All Products
               </Link>
             </div>
           </div>
         </section>
-        <section className="max-w-7xl mx-auto px-6 mt-20">
-          <div className="flex items-end justify-between mb-8">
-            <div className="flex items-end gap-20">
-              <div>
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-5 h-10 bg-[#fd4444] rounded"></div>
-                  <p className="text-[#fd4444] text-xl font-medium">
-                    This Month
-                  </p>
-                </div>
-                <h2 className="text-4xl font-bold text-[#ffad33]">
-                  Best Selling Products
-                </h2>
-              </div>
-            </div>
-            {/* Navigation Arrows */}
-            <div className="flex gap-2">
-              <button
-                onClick={handlePrevFlashSale}
-                disabled={flashSaleIndex === 0}
-                className={`p-3 rounded-full ${
-                  flashSaleIndex === 0
-                    ? "bg-white cursor-not-allowed"
-                    : "bg-white hover:bg-gray-200"
-                } transition-colors`}
-              >
-                <IoChevronBack className="text-black text-xl" />
-              </button>
-              <button
-                onClick={handleNextFlashSale}
-                disabled={flashSaleIndex >= maxIndex}
-                className={`p-3 rounded-full ${
-                  flashSaleIndex >= maxIndex
-                    ? "bg-gray-700 cursor-not-allowed"
-                    : "bg-white hover:bg-gray-200"
-                } transition-colors`}
-              >
-                <IoChevronForward className="text-black text-xl" />
-              </button>
-            </div>
-          </div>
-
-          {/* Best Selling Products */}
-          <div className="overflow-hidden">
-            <div
-              className="flex gap-6 transition-transform duration-300"
-              style={{
-                transform: `translateX(-${
-                  flashSaleIndex * (100 / productsPerView + 1.5)
-                }%)`,
-              }}
-            >
-              {flashSaleProducts.map((product) => (
-                <div
-                  key={product.id}
-                  className="group relative rounded-lg overflow-hidden flex-shrink-0 w-[calc(25%-18px)]"
-                >
-                  {/* Product Image */}
-                  <div className="relative aspect-square rounded-md overflow-hidden ">
-                    <span className="absolute top-3 left-3 bg-[#fd4444] text-white text-xs px-3 py-1 rounded z-10">
-                      -{product.discount}%
-                    </span>
-
-                    <div className="absolute top-3 right-3 flex flex-col gap-2 z-10">
-                      <button
-                        onClick={() => handleWishlist(product.id)}
-                        className="bg-white p-2 rounded-full shadow hover:bg-gray-100 transition-colors"
-                      >
-                        {wishlist.includes(product.id) ? (
-                          <IoMdHeart className="text-[#fd4444] text-lg" />
-                        ) : (
-                          <IoMdHeartEmpty className="text-gray-700 text-lg" />
-                        )}
-                      </button>
-                      <Link to={`/product/${product.id}`}>
-                        <button className="bg-white p-2 rounded-full shadow hover:bg-gray-100 transition-colors">
-                          <IoEyeOutline className="text-gray-700 text-lg" />
-                        </button>
-                      </Link>
-                    </div>
-
-                    <Link to={`/product/${product.id}`}>
-                      <img
-                        src={product.image}
-                        alt={product.name}
-                        className="w-full h-full object-cover"
-                        onError={(e) => {
-                          e.target.src =
-                            "https://via.placeholder.com/300x300?text=Product";
-                        }}
-                      />
-                    </Link>
-
-                    <button
-                      onClick={() => handleAddToCart(product)}
-                      className="absolute bottom-0 left-0 right-0 bg-[#ffad33] text-white py-2 flex items-center justify-center gap-2 translate-y-full group-hover:translate-y-0 transition-transform"
-                    >
-                      <IoCartOutline className="w-5 h-5" />
-                      <span>Add To Cart</span>
-                    </button>
-                  </div>
-
-                  {/* Product Info */}
-                  <div className="py-4">
-                    <Link to={`/product/${product.id}`}>
-                      <h3 className="font-medium text-lg text-[#ffad33] mb-2 hover:text-[#ffad33]/80 transition-colors">
-                        {product.name}
-                      </h3>
-                    </Link>
-                    <div className="flex items-center gap-3 mb-2">
-                      <span className="text-[#fd4444] font-bold">
-                        ${product.price}
-                      </span>
-                      <span className="text-gray-300 line-through text-sm">
-                        ${product.originalPrice}
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      {renderStars(product.rating)}
-                      <span className="text-sm text-gray-300">
-                        ({product.reviews})
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-            {/* View All Products Button */}
-            <div className="text-center mt-12">
-              <Link
-                to="/category/1"
-                className="inline-block px-12 py-4 bg-[#fd4444] text-white rounded hover:bg-red-600 transition-colors font-medium"
-              >
-                View All Products
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        {/* Promotional Banner - Enhance Your Experience */}
-        <section className="w-6xl mx-auto mt-20 overflow-hidden">
-          <div className="bg-black rounded-lg overflow-hidden">
-            <div className="flex items-center justify-between gap-20 p-8">
-              {/* Left Content */}
-              <div className="flex flex-col p-4 text-[#ffad33] w-[40%]">
-                <p className=" text-sm font-semibold mb-8 tracking-wide">
-                  Categories
+        {/* Best Selling Products */}
+        <section className="max-w-7xl mx-auto px-4 md:px-6 mt-20">
+          <div className="flex items-end justify-between mb-4 lg:mb-8">
+            <div>
+              <div className="flex items-center gap-2 lg:gap-4 mb-2 lg:mb-4">
+                <div className="w-3 md:w-4 lg:w-5 h-10 bg-[#fd4444] rounded"></div>
+                <p className="text-[#fd4444] text-lg lg:text-xl font-bold">
+                  This Month
                 </p>
-                <h2 className="text-5xl font-bold  mb-8 leading-tight">
-                  Enhance Your
-                  <br />
-                  Experience
-                </h2>
-
-                {/* Countdown Timer */}
-                <div className="flex gap-6 mb-10">
-                  <div className="bg-white rounded-full w-16 h-16 flex flex-col items-center justify-center">
-                    <p className="text-black font-bold text-lg">
-                      {String(timeLeft.hours).padStart(2, "0")}
-                    </p>
-                    <p className="text-black text-[10px]">Hours</p>
-                  </div>
-                  <div className="bg-white rounded-full w-16 h-16 flex flex-col items-center justify-center">
-                    <p className="text-black font-bold text-lg">
-                      {String(timeLeft.days).padStart(2, "0")}
-                    </p>
-                    <p className="text-black text-[10px]">Days</p>
-                  </div>
-                  <div className="bg-white rounded-full w-16 h-16 flex flex-col items-center justify-center">
-                    <p className="text-black font-bold text-lg">
-                      {String(timeLeft.minutes).padStart(2, "0")}
-                    </p>
-                    <p className="text-black text-[10px]">Minutes</p>
-                  </div>
-                  <div className="bg-white rounded-full w-16 h-16 flex flex-col items-center justify-center">
-                    <p className="text-black font-bold text-lg">
-                      {String(timeLeft.seconds).padStart(2, "0")}
-                    </p>
-                    <p className="text-black text-[10px]">Seconds</p>
-                  </div>
-                </div>
-
-                {/* CTA Button */}
-                <Link
-                  to="/category/featured"
-                  className="w-40 px-6 py-4 bg-[#00ff41] text-white text-center font-semibold rounded hover:bg-[#00dd35] transition-colors "
-                >
-                  Buy Now!
-                </Link>
               </div>
-
-              {/* Right Product Image */}
-              <div className="flex w-[60%] relative rounded-lg pr-2">
-                <div className="relative w-full h-[380px] z-50 ">
-                  <img
-                    src="/images/products/p1.jpg"
-                    alt="Featured Product"
-                    className="w-full h-full object-cover rounded-md z-50"
-                    onError={(e) => {
-                      e.target.src =
-                        "https://via.placeholder.com/600x400?text=Featured+Product";
-                    }}
-                  />
-                </div>
-
-                <div className="absolute z-10 w-80 h-80 translate-x-[30%] translate-y-[10%] rounded-full shadow-[0px_0px_160px_rgba(255,255,255,.5)] pointer-events-none"></div>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section className="max-w-7xl mx-auto px-6 mt-20">
-          <div className="flex items-end justify-between mb-8">
-            <div className="flex items-end gap-20">
-              <div>
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-5 h-10 bg-[#fd4444] rounded"></div>
-                  <p className="text-[#fd4444] text-xl font-medium">
-                    Our Products
-                  </p>
-                </div>
-                <h2 className="text-4xl font-bold text-[#ffad33]">
-                  Explore Our Products
-                </h2>
-              </div>
+              <h2 className="text-2xl lg:text-4xl font-extrabold text-[#ffad33]">
+                Best Selling Products
+              </h2>
             </div>
             {/* Navigation Arrows */}
-            <div className="flex gap-2">
+            <div className="hidden md:flex gap-2">
               <button
                 onClick={handlePrevFlashSale}
                 disabled={flashSaleIndex === 0}
@@ -688,7 +481,7 @@ export default function HomeWithFlashSales() {
           {/* Best Selling Products */}
           <div className="overflow-hidden">
             <div
-              className="flex gap-6 transition-transform duration-300"
+              className="grid grid-cols-3 md:grid-cols-4 gap-2 md:gap-4 lg:gap-6 transition-transform duration-300"
               style={{
                 transform: `translateX(-${
                   flashSaleIndex * (100 / productsPerView + 1.5)
@@ -698,28 +491,28 @@ export default function HomeWithFlashSales() {
               {flashSaleProducts.map((product) => (
                 <div
                   key={product.id}
-                  className="group relative rounded-lg overflow-hidden flex-shrink-0 w-[calc(25%-18px)]"
+                  className="group relative rounded-lg overflow-hidden"
                 >
                   {/* Product Image */}
-                  <div className="relative aspect-square rounded-md overflow-hidden ">
-                    <span className="absolute top-3 left-3 bg-[#fd4444] text-white text-xs px-3 py-1 rounded z-10">
+                  <div className="relative rounded-md overflow-hidden ">
+                    <span className="absolute top-1 md:top-2 lg:top-3 left-1 md:left-2 lg:left-3 bg-[#fd4444] text-white text-xs px-1 md:px-2 lg:px-3 py-1 rounded z-10">
                       -{product.discount}%
                     </span>
 
-                    <div className="absolute top-3 right-3 flex flex-col gap-2 z-10">
+                    <div className="absolute top-1 md:top-2 lg:top-3 right-1 md:right-2 lg:right-3 flex flex-col gap-2 z-10">
                       <button
                         onClick={() => handleWishlist(product.id)}
                         className="bg-white p-2 rounded-full shadow hover:bg-gray-100 transition-colors"
                       >
                         {wishlist.includes(product.id) ? (
-                          <IoMdHeart className="text-[#fd4444] text-lg" />
+                          <IoMdHeart className="text-[#fd4444] text-base md:text-lg" />
                         ) : (
-                          <IoMdHeartEmpty className="text-gray-700 text-lg" />
+                          <IoMdHeartEmpty className="text-gray-700 text-base md:text-lg" />
                         )}
                       </button>
                       <Link to={`/product/${product.id}`}>
                         <button className="bg-white p-2 rounded-full shadow hover:bg-gray-100 transition-colors">
-                          <IoEyeOutline className="text-gray-700 text-lg" />
+                          <IoEyeOutline className="text-gray-700 text-base md:text-lg" />
                         </button>
                       </Link>
                     </div>
@@ -728,7 +521,7 @@ export default function HomeWithFlashSales() {
                       <img
                         src={product.image}
                         alt={product.name}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full aspect-square object-cover"
                         onError={(e) => {
                           e.target.src =
                             "https://via.placeholder.com/300x300?text=Product";
@@ -746,23 +539,23 @@ export default function HomeWithFlashSales() {
                   </div>
 
                   {/* Product Info */}
-                  <div className="py-4">
+                  <div className="py-2 md:py-3 lg:py-4">
                     <Link to={`/product/${product.id}`}>
-                      <h3 className="font-medium text-lg text-[#ffad33] mb-2 hover:text-[#ffad33]/80 transition-colors">
+                      <h3 className="font-bold text-sm md:text-base lg:text-lg text-[#ffad33] mb-2 hover:text-[#ffad33]/80 transition-colors">
                         {product.name}
                       </h3>
                     </Link>
                     <div className="flex items-center gap-3 mb-2">
-                      <span className="text-[#fd4444] font-bold">
+                      <span className="text-[#fd4444] text-sm md:text-base lg:text-lg font-bold">
                         ${product.price}
                       </span>
-                      <span className="text-gray-300 line-through text-sm">
+                      <span className="text-gray-300 line-through text-xs md:text-sm">
                         ${product.originalPrice}
                       </span>
                     </div>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-1 md:gap-2">
                       {renderStars(product.rating)}
-                      <span className="text-sm text-gray-300">
+                      <span className="text-xs md:text-sm text-gray-300">
                         ({product.reviews})
                       </span>
                     </div>
@@ -774,7 +567,209 @@ export default function HomeWithFlashSales() {
             <div className="text-center mt-12">
               <Link
                 to="/category/1"
-                className="inline-block px-12 py-4 bg-[#fd4444] text-white rounded hover:bg-red-600 transition-colors font-medium"
+                className="inline-block px-8 md:px-10 lg:px-12 py-3 md:py-3 lg:py-4 bg-[#fd4444] text-white rounded hover:bg-red-500 transition-colors font-medium"
+              >
+                View All Products
+              </Link>
+            </div>
+          </div>
+        </section>
+        {/* Promotional Banner - Enhance Your Experience */}
+        <section className="max-w-5xl px-3 md:px-4 lg:px-6 mx-auto mt-20 overflow-hidden">
+          <div className="grid grid-cols-2 items-center gap-12 p-4 md:p-4 lg:p-8 bg-[#19191a]  rounded-lg overflow-hidden">
+            {/* Left Content */}
+            <div className="flex flex-col p-0 lg:p-6 md:p-4 ">
+              <p className=" text-xs md:text-sm mb-4 tracking-wide text-[#fd4444]">
+                Categories
+              </p>
+
+              <h2 className="text-xl md:text-3xl lg:text-5xl font-bold text-[#ffad33] mb-3 md:mb-4 lg:mb-8 leading-tight">
+                Enhance Your <br /> Experience
+              </h2>
+
+              {/* Countdown Timer */}
+              <div className="flex gap-2 md:gap-2 lg:gap-3 mb-5 md:mb-8 lg:mb-10">
+                <div className="bg-white rounded-full w-10 h-10 md:w-12 lg:w-16 md:h-12 lg:h-16 flex flex-col items-center justify-center">
+                  <p className="text-black font-bold text-sm md:text-base lg:text-lg">
+                    {String(timeLeft.hours).padStart(2, "0")}
+                  </p>
+                  <p className="text-black font-semibold text-[8px] md:text-[10px]">
+                    Hour
+                  </p>
+                </div>
+                <div className="bg-white rounded-full w-10 h-10 md:w-12 lg:w-16 md:h-12 lg:h-16 flex flex-col items-center justify-center">
+                  <p className="text-black font-bold text-sm md:text-base lg:text-lg">
+                    {String(timeLeft.days).padStart(2, "0")}
+                  </p>
+                  <p className="text-black font-semibold text-[8px] md:text-[10px]">
+                    Day
+                  </p>
+                </div>
+                <div className="bg-white rounded-full w-10 h-10 md:w-12 lg:w-16 md:h-12 lg:h-16 flex flex-col items-center justify-center">
+                  <p className="text-black font-bold text-sm md:text-base lg:text-lg">
+                    {String(timeLeft.minutes).padStart(2, "0")}
+                  </p>
+                  <p className="text-black font-semibold text-[8px] md:text-[10px]">
+                    Min
+                  </p>
+                </div>
+                <div className="bg-white rounded-full w-10 h-10 md:w-12 lg:w-16 md:h-12 lg:h-16 flex flex-col items-center justify-center">
+                  <p className="text-black font-bold text-sm md:text-base lg:text-lg">
+                    {String(timeLeft.seconds).padStart(2, "0")}
+                  </p>
+                  <p className="text-black font-semibold text-[8px] md:text-[10px]">
+                    Sec
+                  </p>
+                </div>
+              </div>
+
+              {/* CTA Button */}
+              <Link
+                to="/category/featured"
+                className=" py-2 md:py-3 lg:py-4 w-28 md:w-32 lg:w-40 bg-[#04b430] text-white text-center text-sm md:text-base font-semibold rounded hover:bg-[#038c23] transition-colors "
+              >
+                Buy Now!
+              </Link>
+            </div>
+
+            {/* Right Product Image */}
+
+            <div className="relative w-full z-50 ">
+              <img
+                src="/images/products/p1.jpg"
+                alt="Featured Product"
+                className="w-full h-full aspect-square object-cover rounded-md z-50 shadow-[0px_0px_60px_#fff]/20"
+              />
+            </div>
+          </div>
+        </section>
+        {/* Explore Our Products */}
+        <section className="max-w-7xl mx-auto px-4 md:px-6 mt-20">
+          <div className="flex items-end justify-between mb-4 lg:mb-8">
+            <div>
+              <div className="flex items-center gap-2 lg:gap-4 mb-2 lg:mb-4">
+                <div className="w-3 md:w-4 lg:w-5 h-10 bg-[#fd4444] rounded"></div>
+                <p className="text-[#fd4444] text-lg lg:text-xl font-bold">
+                  Our Products
+                </p>
+              </div>
+              <h2 className="text-2xl lg:text-4xl font-extrabold text-[#ffad33]">
+                Explore Our Products
+              </h2>
+            </div>
+            {/* Navigation Arrows */}
+            <div className="hidden md:flex gap-2">
+              <button
+                onClick={handlePrevFlashSale}
+                disabled={flashSaleIndex === 0}
+                className={`p-3 rounded-full ${
+                  flashSaleIndex === 0
+                    ? "bg-white cursor-not-allowed"
+                    : "bg-white hover:bg-gray-200"
+                } transition-colors`}
+              >
+                <IoChevronBack className="text-black text-xl" />
+              </button>
+              <button
+                onClick={handleNextFlashSale}
+                disabled={flashSaleIndex >= maxIndex}
+                className={`p-3 rounded-full ${
+                  flashSaleIndex >= maxIndex
+                    ? "bg-gray-700 cursor-not-allowed"
+                    : "bg-white hover:bg-gray-200"
+                } transition-colors`}
+              >
+                <IoChevronForward className="text-black text-xl" />
+              </button>
+            </div>
+          </div>
+
+          {/* Best Selling Products */}
+          <div className="overflow-hidden">
+            <div
+              className="grid grid-cols-3 md:grid-cols-4 gap-2 md:gap-4 lg:gap-6 transition-transform duration-300"
+              style={{
+                transform: `translateX(-${
+                  flashSaleIndex * (100 / productsPerView + 1.5)
+                }%)`,
+              }}
+            >
+              {flashSaleProducts.map((product) => (
+                <div
+                  key={product.id}
+                  className="group relative rounded-lg overflow-hidden"
+                >
+                  {/* Product Image */}
+                  <div className="relative rounded-md overflow-hidden ">
+                    <span className="absolute top-1 md:top-2 lg:top-3 left-1 md:left-2 lg:left-3 bg-[#fd4444] text-white text-xs px-1 md:px-2 lg:px-3 py-1 rounded z-10">
+                      -{product.discount}%
+                    </span>
+
+                    <div className="absolute top-1 md:top-2 lg:top-3 right-1 md:right-2 lg:right-3 flex flex-col gap-2 z-10">
+                      <button
+                        onClick={() => handleWishlist(product.id)}
+                        className="bg-white p-2 rounded-full shadow hover:bg-gray-100 transition-colors"
+                      >
+                        {wishlist.includes(product.id) ? (
+                          <IoMdHeart className="text-[#fd4444] text-base md:text-lg" />
+                        ) : (
+                          <IoMdHeartEmpty className="text-gray-700 text-base md:text-lg" />
+                        )}
+                      </button>
+                      <Link to={`/product/${product.id}`}>
+                        <button className="bg-white p-2 rounded-full shadow hover:bg-gray-100 transition-colors">
+                          <IoEyeOutline className="text-gray-700 text-base md:text-lg" />
+                        </button>
+                      </Link>
+                    </div>
+
+                    <Link to={`/product/${product.id}`}>
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                        className="w-full h-full object-cover aspect-square"
+                      />
+                    </Link>
+
+                    <button
+                      onClick={() => handleAddToCart(product)}
+                      className="absolute bottom-0 left-0 right-0 bg-[#ffad33] text-white py-2 flex items-center justify-center gap-2 translate-y-full group-hover:translate-y-0 transition-transform"
+                    >
+                      <IoCartOutline className="w-5 h-5" />
+                      <span>Add To Cart</span>
+                    </button>
+                  </div>
+
+                  {/* Product Info */}
+                  <div className="py-2 md:py-3 lg:py-4">
+                    <Link to={`/product/${product.id}`}>
+                      <h3 className="font-bold text-sm md:text-base lg:text-lg text-[#ffad33] mb-2 hover:text-[#ffad33]/80 transition-colors">
+                        {product.name}
+                      </h3>
+                    </Link>
+                    <div className="flex items-center gap-3 mb-2">
+                      <span className="text-[#fd4444] text-sm md:text-base lg:text-lg font-bold">
+                        ${product.price}
+                      </span>
+                      <span className="text-gray-300 line-through text-xs md:text-sm ">
+                        ${product.originalPrice}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-1 md:gap-2">
+                      {renderStars(product.rating)}
+                      <span className="text-xs md:text-sm text-gray-300">
+                        ({product.reviews})
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            {/* View All Products Button */}
+            <div className="text-center mt-12">
+              <Link
+                to="/category/1"
+                className="inline-block px-8 md:px-10 lg:px-12 py-3 md:py-3 lg:py-4 bg-[#fd4444] text-white rounded hover:bg-red-500 transition-colors font-medium"
               >
                 View All Products
               </Link>
@@ -784,16 +779,20 @@ export default function HomeWithFlashSales() {
 
         {/* New Arrival - Featured Section */}
         <section className="max-w-7xl mx-auto px-6 mt-20">
-          <div className="mb-12">
-            <div className="flex items-center gap-4 mb-4">
-              <div className="w-5 h-10 bg-[#fd4444] rounded"></div>
-              <p className="text-[#fd4444] text-xl font-medium">Featured</p>
+          <div className="mb-3 md:mb-6 lg:mb-12">
+            <div className="flex items-center gap-2 md:gap-3 lg:gap-4 mb-2 md:mb-3 lg:mb-4">
+              <div className="w-3 md:w-4 lg:w-5 h-10 bg-[#fd4444] rounded"></div>
+              <p className="text-[#fd4444] text-lg lg:text-xl font-bold">
+                Featured
+              </p>
             </div>
-            <h2 className="text-4xl font-bold text-[#ffad33]">New Arrival</h2>
+            <h2 className="text-2xl lg:text-4xl font-extrabold text-[#ffad33]">
+              New Arrival
+            </h2>
           </div>
 
           {/* Featured Grid */}
-          <div className="grid grid-cols-2 gap-8 h-[600px]">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-2 lg:gap-6 ">
             {/* Large Featured Product - PlayStation 5 */}
             <div className="relative bg-black rounded-lg overflow-hidden group cursor-pointer">
               <img
@@ -805,11 +804,11 @@ export default function HomeWithFlashSales() {
                     "https://via.placeholder.com/600x600?text=PlayStation+5";
                 }}
               />
-              <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/80 to-transparent">
-                <h3 className="text-2xl font-bold text-white mb-2">
+              <div className="absolute bottom-0 left-0 right-0 p-4 lg:p-6 bg-gradient-to-t from-black/80 to-transparent">
+                <h3 className="text-xl lg:text-2xl font-bold text-white lg:mb-2">
                   PlayStation 5
                 </h3>
-                <p className="text-gray-300 text-sm mb-4 max-w-xs">
+                <p className="text-gray-300 text-sm mb-2 lg:mb-4 max-w-xs">
                   Black and White version of the PS5 coming out on sale.
                 </p>
                 <Link
@@ -822,7 +821,7 @@ export default function HomeWithFlashSales() {
             </div>
 
             {/* Right Column - 3 Cards */}
-            <div className="flex flex-col gap-8">
+            <div className="flex flex-col gap-4 md:gap-2 lg:gap-6 ">
               <div className="relative bg-black/90 rounded-lg overflow-hidden h-[48%] group cursor-pointer">
                 <img
                   src="/images/products/Newarrival/attractive-woman.jpg"
@@ -835,10 +834,10 @@ export default function HomeWithFlashSales() {
                 />
                 <div className="absolute inset-0 flex items-end p-6 bg-gradient-to-t from-black/70 to-transparent">
                   <div>
-                    <h3 className="text-2xl font-bold text-white mb-2">
+                    <h3 className="text-xl lg:text-2xl font-bold text-white lg:mb-2">
                       Women's Collections
                     </h3>
-                    <p className="text-gray-300 text-sm mb-3 max-w-xs">
+                    <p className="text-gray-300 text-sm mb-2 lg:mb-4 max-w-xs">
                       Featured woman collections that give you another vibe.
                     </p>
                     <Link
@@ -852,7 +851,7 @@ export default function HomeWithFlashSales() {
               </div>
 
               {/* Bottom Row - Speakers & Perfume */}
-              <div className="grid grid-cols-2 gap-8 h-[48%]">
+              <div className="grid grid-cols-2 gap-4 md:gap-2 lg:gap-6 h-[48%]">
                 <div className="relative bg-black/90 rounded-lg overflow-hidden group cursor-pointer">
                   <img
                     src="/images/products/Newarrival/264.png"
@@ -863,12 +862,12 @@ export default function HomeWithFlashSales() {
                         "https://via.placeholder.com/300x300?text=Speakers";
                     }}
                   />
-                  <div className="absolute inset-0 flex items-end p-6 bg-gradient-to-t from-black/70 to-transparent">
+                  <div className="absolute inset-0 flex items-end p-3 lg:p-6 bg-gradient-to-t from-black/70 to-transparent">
                     <div>
-                      <h3 className="text-xl font-bold text-white mb-2">
+                      <h3 className="text-lg lg:text-xl font-bold text-white lg:mb-2">
                         Speakers
                       </h3>
-                      <p className="text-gray-300 text-xs mb-3">
+                      <p className="text-gray-300 text-xs mb-1 lg:mb-3">
                         Amazon wireless speakers
                       </p>
                       <Link
@@ -892,12 +891,12 @@ export default function HomeWithFlashSales() {
                         "https://via.placeholder.com/300x300?text=Perfume";
                     }}
                   />
-                  <div className="absolute inset-0 flex items-end p-6 bg-gradient-to-t from-black/70 to-transparent">
+                  <div className="absolute inset-0 flex items-end p-3 lg:p-6 bg-gradient-to-t from-black/70 to-transparent">
                     <div>
-                      <h3 className="text-xl font-bold text-white mb-2">
+                      <h3 className="text-lg lg:text-xl font-bold text-white lg:mb-2">
                         Perfume
                       </h3>
-                      <p className="text-gray-300 text-xs mb-3">
+                      <p className="text-gray-300 text-xs mb-1 lg:mb-3">
                         GUCCI INTENSE OUD EDP
                       </p>
                       <Link
@@ -915,8 +914,8 @@ export default function HomeWithFlashSales() {
         </section>
 
         {/* Services Section */}
-        <section className="w-6xl mx-auto px-6 mt-20 relative">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 p-16">
+        <section className="max-w-6xl mx-auto px-6 mt-20 relative">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 md:gap-3 lg:gap-8 p-16">
             <div className="text-center">
               <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
                 <div className="w-14 h-14 bg-black rounded-full flex items-center justify-center">

@@ -1,6 +1,6 @@
 import { createContext, useContext } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
-import { IoCheckmarkCircleOutline, IoCloseCircleOutline, IoInformationCircleOutline, IoClose } from 'react-icons/io5'
+import { IoCheckmarkCircleOutline, IoCloseCircleOutline, IoInformationCircleOutline } from 'react-icons/io5'
 
 const ToastContext = createContext(null)
 
@@ -8,7 +8,7 @@ export function ToastProvider({ children }) {
   const api = {
     show: (message, opts = {}) => {
       if (opts.raw) return toast(message, opts)
-      const duration = opts.duration || 4000
+      const duration = opts.duration || 2000;
 
       return toast.custom((t) => (
         <ToastCard visible={t.visible} message={message} opts={opts} onClose={() => toast.dismiss(t.id)} />
@@ -26,53 +26,54 @@ export function ToastProvider({ children }) {
 }
 
 
-function ToastCard({ visible, message, opts = {}, onClose }) {
+function ToastCard({ visible, message, opts = {} }) {
   const type = opts.type || 'default'
   const title = opts.title
 
   const typeStyles = {
     success: {
-      accent: 'bg-green-500',
+      bg: 'bg-green-400',
+      text: 'text-green-500',
       iconBg: 'bg-green-100/70',
-      icon: <IoCheckmarkCircleOutline className="text-green-700" size={20} />,
+      icon: <IoCheckmarkCircleOutline className="text-white font-extrabold" size={20} />,
       ring: 'ring-green-500/50',
     },
     error: {
-      accent: 'bg-red-500',
+      bg: 'bg-red-500',
+      text: 'text-red-500',
       iconBg: 'bg-red-100/70',
-      icon: <IoCloseCircleOutline className="text-red-700" size={20} />,
+      icon: <IoCloseCircleOutline className="text-white font-bold" size={20} />,
       ring: 'ring-red-500/50',
     },
     info: {
-      accent: 'bg-sky-500',
+      bg: 'bg-sky-500',
+      text: 'text-sky-500',
       iconBg: 'bg-sky-100/70',
-      icon: <IoInformationCircleOutline className="text-sky-700" size={20} />,
+      icon: <IoInformationCircleOutline className="text-white font-bold" size={20} />,
       ring: 'ring-sky-500/50',
     },
     default: {
-      accent: 'bg-gray-400',
+      bg: 'bg-gray-400',
+      text: 'text-gray-500',
       iconBg: 'bg-gray-100/70',
-      icon: <IoInformationCircleOutline className="text-gray-700" size={20} />,
+      icon: <IoInformationCircleOutline className="text-white font-bold" size={20} />,
       ring: 'ring-gray-400/50',
     },
   }
   
-  const { icon, iconBg, ring } = typeStyles[type]
+  const { bg, icon} = typeStyles[type]
 
   return (
-    <div className={`transform transition-all duration-300 ${visible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 -translate-y-2 scale-95'}`}>
-      <div className={`flex items-center w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden ring-2 ${ring} ring-opacity-70`}>
-        <div className="flex items-center gap-3 px-4 py-3 flex-1">
-          <div className={`flex-none w-8 h-8 flex items-center justify-center rounded-full ${iconBg}`}>
+    <div className={`transform transition-all ${bg} text-white rounded-md duration-300 ${visible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 -translate-y-2 scale-95'}`}>
+      <div className={`flex items-center w-full max-w-sm  rounded-lg shadow-lg overflow-hidden `}>
+        <div className="flex items-center gap-1 pr-4 pl-2 py-1 flex-1">
+          <div className={`flex-none w-8 h-8 flex items-center justify-center rounded-full `}>
             {icon}
           </div>
           <div className="flex-1 min-w-0">
-            {title && <div className="text-xs font-semibold text-gray-500 truncate">{title}</div>}
-            <div className="text-sm text-slate-700 font-medium">{typeof message === 'string' ? message : message}</div>
+            {title && <div className={`text-sm  font-bold text-white truncate`}>{title}</div>}
+            <div className={`text-sm font-bold text-white`}>{typeof message === 'string' ? message : message}</div>
           </div>
-          <button onClick={onClose} className="ml-3 text-gray-400 hover:text-gray-600 p-1 rounded-full hover:bg-gray-100">
-            <IoClose size={18} />
-          </button>
         </div>
       </div>
     </div>

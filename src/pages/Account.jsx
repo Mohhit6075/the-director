@@ -98,7 +98,7 @@ export default function Account() {
       case "profile":
         return (
           <div className="bg-white rounded-lg shadow-lg p-8 lg:p-12">
-            <h2 className="text-3xl font-bold text-[#fd4444] mb-8">
+            <h2 className="text-3xl font-extrabold text-[#fd4444] mb-8">
               Edit Your Profile
             </h2>
             <form onSubmit={handleSaveChanges} className="space-y-6">
@@ -112,7 +112,7 @@ export default function Account() {
                     name="firstName"
                     value={formData.firstName}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 text-gray-600 bg-gray-100 rounded border-none focus:outline-none focus:ring-2 focus:ring-[#ffad33] focus:text-gray-900"
+                    className="w-full px-4 py-3 text-gray-700 bg-gray-200 rounded border-none focus:outline-none focus:ring-2 focus:ring-[#ffad33] focus:text-gray-900"
                     placeholder="Md"
                   />
                 </div>
@@ -125,7 +125,7 @@ export default function Account() {
                     name="lastName"
                     value={formData.lastName}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 text-gray-600 bg-gray-100 rounded border-none focus:outline-none focus:ring-2 focus:ring-[#ffad33] focus:text-gray-900"
+                    className="w-full px-4 py-3 text-gray-700 bg-gray-200 rounded border-none focus:outline-none focus:ring-2 focus:ring-[#ffad33] focus:text-gray-900"
                     placeholder="Rimel"
                   />
                 </div>
@@ -140,7 +140,7 @@ export default function Account() {
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 text-gray-600 bg-gray-100 rounded border-none focus:outline-none focus:ring-2 focus:ring-[#ffad33] focus:text-gray-900"
+                    className="w-full px-4 py-3 text-gray-700 bg-gray-200 rounded border-none focus:outline-none focus:ring-2 focus:ring-[#ffad33] focus:text-gray-900"
                     placeholder="rimel1111@gmail.com"
                   />
                 </div>
@@ -153,7 +153,7 @@ export default function Account() {
                     name="address"
                     value={formData.address}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 text-gray-600 bg-gray-100 rounded border-none focus:outline-none focus:ring-2 focus:ring-[#ffad33] focus:text-gray-900"
+                    className="w-full px-4 py-3 text-gray-700 bg-gray-200 rounded border-none focus:outline-none focus:ring-2 focus:ring-[#ffad33] focus:text-gray-900"
                     placeholder="Kingston, 5236, United State"
                   />
                 </div>
@@ -168,7 +168,7 @@ export default function Account() {
                     name="currentPassword"
                     value={formData.currentPassword}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 text-gray-600 bg-gray-100 rounded border-none focus:outline-none focus:ring-2 focus:ring-[#fd4444]/80 focus:text-gray-900"
+                    className="w-full px-4 py-3 text-gray-700 bg-gray-200 rounded border-none focus:outline-none focus:ring-2 focus:ring-[#fd4444]/80 focus:text-gray-900"
                     placeholder="Current Password"
                   />
                   <input
@@ -176,7 +176,7 @@ export default function Account() {
                     name="newPassword"
                     value={formData.newPassword}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 text-gray-600 bg-gray-100 rounded border-none focus:outline-none focus:ring-2 focus:ring-[#fd4444]/80 focus:text-gray-900"
+                    className="w-full px-4 py-3 text-gray-700 bg-gray-200 rounded border-none focus:outline-none focus:ring-2 focus:ring-[#fd4444]/80 focus:text-gray-900"
                     placeholder="New Password"
                   />
                   <input
@@ -184,7 +184,7 @@ export default function Account() {
                     name="confirmPassword"
                     value={formData.confirmPassword}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 text-gray-600 bg-gray-100 rounded border-none focus:outline-none focus:ring-2 focus:ring-[#fd4444]/80 focus:text-gray-900"
+                    className="w-full px-4 py-3 text-gray-700 bg-gray-200 rounded border-none focus:outline-none focus:ring-2 focus:ring-[#fd4444]/80 focus:text-gray-900"
                     placeholder="Confirm New Password"
                   />
                 </div>
@@ -199,7 +199,7 @@ export default function Account() {
                 </button>
                 <button
                   type="submit"
-                  className="px-8 py-3 bg-[#fd4444] text-white rounded hover:bg-red-600 transition-colors font-medium"
+                  className="px-8 py-3 bg-[#fd4444] text-white rounded hover:bg-red-500 transition-colors font-medium"
                 >
                   Save Changes
                 </button>
@@ -217,8 +217,8 @@ export default function Account() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-6 py-20 min-h-screen mt-12">
-      <div className="mb-14 text-sm flex gap-2 text-yellow-400/60 justify-between items-center">
+    <div className="max-w-7xl mx-auto px-4 md:px-6 py-20 min-h-screen mt-12">
+      <div className="mb-8 md:mb-14 text-sm flex flex-col sm:flex-row gap-4 sm:gap-2 text-yellow-400/60 justify-between items-start sm:items-center">
         <div className="flex gap-2">
           <Link to="/home" className="text-[#ffad33]/70 transition-colors">
             Home
@@ -226,15 +226,17 @@ export default function Account() {
           <span>/</span>
           <span className="text-[#ffad33]">Account</span>
         </div>
-        <div className="text-white font-medium text-3xl">
+        <div className="text-white font-medium text-xl md:text-2xl lg:text-3xl">
           Welcome!{" "}
-          <span className="text-[#fd4444]">{user?.name || "User"}</span>
+          <span className="text-[#fd4444] font-extrabold">
+            {user?.name || "User"}
+          </span>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 md:gap-8">
         <aside className="lg:col-span-1">
-          <div className="space-y-6">
+          <div className="space-y-4 md:space-y-6 bg-black/5 lg:bg-transparent p-4 lg:p-0 rounded-lg lg:rounded-none border lg:border-0 border-white/10">
             <div>
               <h3 className="text-[#ffad33] font-medium mb-4">
                 Manage My Account
@@ -245,7 +247,7 @@ export default function Account() {
                   className={`block w-full text-left transition-colors ${
                     activeSection === "profile"
                       ? "text-[#fd4444]"
-                      : "text-white/70 hover:text-white"
+                      : "text-white/90 hover:text-white"
                   }`}
                 >
                   My Profile
@@ -255,7 +257,7 @@ export default function Account() {
                   className={`block w-full text-left transition-colors ${
                     activeSection === "addressbook"
                       ? "text-[#fd4444]"
-                      : "text-white/70 hover:text-white"
+                      : "text-white/90 hover:text-white"
                   }`}
                 >
                   Address Book
@@ -265,7 +267,7 @@ export default function Account() {
                   className={`block w-full text-left transition-colors ${
                     activeSection === "paymentoptions"
                       ? "text-[#fd4444]"
-                      : "text-white/70 hover:text-white"
+                      : "text-white/90 hover:text-white"
                   }`}
                 >
                   My Payment Options
@@ -289,7 +291,7 @@ export default function Account() {
                   className={`block w-full text-left transition-colors ${
                     activeSection === "returns"
                       ? "text-[#fd4444]"
-                      : "text-white/70 hover:text-white"
+                      : "text-white/90 hover:text-white"
                   }`}
                 >
                   My Returns
@@ -299,7 +301,7 @@ export default function Account() {
                   className={`block w-full text-left transition-colors ${
                     activeSection === "cancellations"
                       ? "text-[#fd4444]"
-                      : "text-white/70 hover:text-white"
+                      : "text-white/90 hover:text-white"
                   }`}
                 >
                   My Cancellations
@@ -323,7 +325,7 @@ export default function Account() {
             <div className="pt-6 border-t border-white/10 space-y-3">
               <button
                 onClick={handleLogout}
-                className="w-full text-left px-4 py-2.5 bg-[#ffad33] text-white rounded-lg hover:bg-[#ffad33]/80 transition-all font-medium flex items-center gap-2"
+                className="w-full text-left px-4 py-2.5 bg-[#ffad33] text-white rounded-lg hover:bg-yellow-600 transition-colors duration-200 font-medium flex items-center gap-2"
               >
                 <BiLogOut className="w-6 h-6" />
                 Logout
@@ -331,7 +333,7 @@ export default function Account() {
 
               <button
                 onClick={handleDeleteAccount}
-                className="w-full text-left px-4 py-2.5 bg-[#fd4444] text-white rounded-lg hover:bg-[#fd4444]/80 transition-all font-medium flex items-center gap-2 border border-[#fd4444]/80"
+                className="w-full text-left px-4 py-2.5 bg-[#fd4444] text-white rounded-lg hover:bg-red-500 transition-colors duration-200 font-medium flex items-center gap-2 border border-[#fd4444]/80"
               >
                 <BiTrash className="w-6 h-6" />
                 Delete My Account
@@ -396,7 +398,7 @@ export default function Account() {
               </button>
               <button
                 onClick={confirmDeleteAccount}
-                className="flex-1 px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-all font-medium"
+                className="flex-1 px-6 py-3 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-all font-medium"
               >
                 Delete Account
               </button>

@@ -59,25 +59,16 @@ export default function Checkout() {
 
   const handlePlaceOrder = (e) => {
     e.preventDefault();
-    if (
-      !formData.firstName ||
-      !formData.streetAddress ||
-      !formData.city ||
-      !formData.phoneNumber ||
-      !formData.email
-    ) {
-      toast.show("Please fill in all required fields", { type: "error" });
-      return;
-    }
+
     toast.show("Order placed successfully!", { type: "success" });
     console.log("Order data:", { formData, paymentMethod, cartItems, total });
   };
 
   return (
     <div className="min-h-screen py-20 mt-12">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-4 md:px-6">
         {/* Breadcrumb */}
-        <div className="flex items-center gap-2 text-sm mb-12 text-yellow-600">
+        <div className="flex flex-wrap items-center gap-2 text-xs md:text-sm mb-8 md:mb-12 text-yellow-600">
           <Link to="/" className="hover:text-[#ffad33] transition-colors">
             Account
           </Link>
@@ -103,10 +94,10 @@ export default function Checkout() {
           <span className="text-[#ffad33]">CheckOut</span>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16">
           {/* Left Side - Billing Details Form */}
           <div>
-            <h1 className="text-4xl font-bold text-[#ffad33] mb-12">
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#ffad33] mb-8 md:mb-12">
               Billing Details
             </h1>
 
@@ -126,7 +117,7 @@ export default function Checkout() {
                   placeholder="xyz"
                   value={formData.Name}
                   onChange={handleInputChange}
-                  className="w-full bg-white border-none rounded px-4 py-3 text-black focus:outline-none focus:ring-2 focus:ring-[#ffad33] placeholder:text-gray-700"
+                  className="w-full bg-gray-200 border-none rounded px-4 py-3 text-black focus:outline-none focus:ring-2 focus:ring-[#ffad33] placeholder:text-black"
                   required
                 />
               </div>
@@ -146,7 +137,7 @@ export default function Checkout() {
                   placeholder="abcxyz"
                   value={formData.companyName}
                   onChange={handleInputChange}
-                  className="w-full bg-white border-none rounded px-4 py-3 text-black focus:outline-none focus:ring-2 focus:ring-[#ffad33] placeholder:text-gray-700"
+                  className="w-full bg-gray-200 border-none rounded px-4 py-3 text-black focus:outline-none focus:ring-2 focus:ring-[#ffad33] placeholder:text-black"
                 />
               </div>
 
@@ -165,7 +156,7 @@ export default function Checkout() {
                   placeholder="AB street"
                   value={formData.streetAddress}
                   onChange={handleInputChange}
-                  className="w-full bg-white border-none rounded px-4 py-3 text-black focus:outline-none focus:ring-2 focus:ring-[#ffad33] placeholder:text-gray-700"
+                  className="w-full bg-gray-200 border-none rounded px-4 py-3 text-black focus:outline-none focus:ring-2 focus:ring-[#ffad33] placeholder:text-black"
                   required
                 />
               </div>
@@ -185,7 +176,7 @@ export default function Checkout() {
                   placeholder="00"
                   value={formData.apartment}
                   onChange={handleInputChange}
-                  className="w-full bg-white border-none rounded px-4 py-3 text-black focus:outline-none focus:ring-2 focus:ring-[#ffad33] placeholder:text-gray-700"
+                  className="w-full bg-gray-200 border-none rounded px-4 py-3 text-black focus:outline-none focus:ring-2 focus:ring-[#ffad33] placeholder:text-black"
                 />
               </div>
 
@@ -204,7 +195,7 @@ export default function Checkout() {
                   placeholder="New Delhi"
                   value={formData.city}
                   onChange={handleInputChange}
-                  className="w-full bg-white border-none rounded px-4 py-3 text-black focus:outline-none focus:ring-2 focus:ring-[#ffad33] placeholder:text-gray-700"
+                  className="w-full bg-gray-200 border-none rounded px-4 py-3 text-black focus:outline-none focus:ring-2 focus:ring-[#ffad33] placeholder:text-black"
                   required
                 />
               </div>
@@ -224,7 +215,7 @@ export default function Checkout() {
                   placeholder="+91 1234567890"
                   value={formData.phoneNumber}
                   onChange={handleInputChange}
-                  className="w-full bg-white border-none rounded px-4 py-3 text-black focus:outline-none focus:ring-2 focus:ring-[#ffad33] placeholder:text-gray-700"
+                  className="w-full bg-gray-200 border-none rounded px-4 py-3 text-black focus:outline-none focus:ring-2 focus:ring-[#ffad33] placeholder:text-black"
                   required
                 />
               </div>
@@ -244,7 +235,7 @@ export default function Checkout() {
                   placeholder="xyz@gmail.com"
                   value={formData.email}
                   onChange={handleInputChange}
-                  className="w-full bg-white border-none rounded px-4 py-3 text-black focus:outline-none focus:ring-2 focus:ring-[#ffad33] placeholder:text-gray-700"
+                  className="w-full bg-gray-200 border-none rounded px-4 py-3 text-black focus:outline-none focus:ring-2 focus:ring-[#ffad33] placeholder:text-black"
                   required
                 />
               </div>
@@ -269,7 +260,7 @@ export default function Checkout() {
           </div>
 
           {/* Right Side - Order Summary */}
-          <div className="lg:pt-20">
+          <div className="lg:py-12 xl:py-20 h-fit px-4 md:px-6 lg:px-8 py-6 md:py-8 rounded-lg bg-black/5 backdrop-blur-sm">
             {/* Cart Items */}
             <div className="space-y-6 mb-8">
               {cartItems.map((item) => (
@@ -374,19 +365,15 @@ export default function Checkout() {
             </div>
 
             {/* Coupon Code */}
-            <div className="mt-8 flex gap-4">
+            <div className="flex gap-3 md:gap-4 mt-4">
               <input
                 type="text"
                 placeholder="Coupon Code"
                 value={couponCode}
                 onChange={(e) => setCouponCode(e.target.value)}
-                className="flex-1 bg-transparent border border-white rounded px-4 py-3 text-white placeholder-gray-300 focus:outline-none focus:border-[#fd4444]"
+                className="flex-1 px-4 md:px-6 py-3 border border-white rounded text-white placeholder:text-gray-300 focus:outline-none focus:border-[#fd4444] text-sm md:text-base bg-transparent"
               />
-              <button
-                type="button"
-                onClick={handleApplyCoupon}
-                className="px-8 py-3 bg-[#ffad33] text-white rounded hover:bg-yellow-600 transition-colors font-medium"
-              >
+              <button className="px-6 md:px-8 py-3 bg-[#ffad33] text-white rounded hover:bg-[#ffad33]/90 transition-all font-medium whitespace-nowrap text-sm md:text-base">
                 Apply Coupon
               </button>
             </div>
@@ -394,7 +381,7 @@ export default function Checkout() {
             {/* Place Order Button */}
             <button
               onClick={handlePlaceOrder}
-              className="w-full mt-6 px-12 py-4 bg-[#fd4444] text-white rounded hover:bg-red-600 transition-colors font-medium"
+              className="w-full mt-6 px-12 py-3 bg-[#fd4444] text-white rounded hover:bg-red-600 transition-colors font-medium"
             >
               Place Order
             </button>
